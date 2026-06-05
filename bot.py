@@ -77,6 +77,23 @@ async def set_rate_rmb(message: Message):
         await message.answer(f"✅ Đã set tỷ giá RMB/VND: {format_vn(new_rate)}")
     except: await message.answer("⚠️ Lỗi định dạng.")
 
+@dp.message(Command("setfee"))
+async def set_fee(message: Message):
+    if message.from_user.id not in ADMIN_IDS: return
+    try:
+        # Lấy giá trị sau lệnh /setfee
+        args = message.text.split()
+        if len(args) < 2:
+            await message.answer("⚠️ Thiếu giá trị. Ví dụ: /setfee 6")
+            return
+        
+        # Bỏ dấu % nếu có
+        val = float(args[1].replace('%', ''))
+        save_value(FEE_FILE, val)
+        await message.answer(f"✅ Đã cập nhật phí: {val}%")
+    except Exception as e:
+        await message.answer("⚠️ Lỗi định dạng số phí.")
+
 # --- LOGIC ĐỐI SOÁT ---
 @dp.message()
 async def process_message(message: Message):
