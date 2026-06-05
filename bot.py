@@ -126,13 +126,13 @@ async def process_message(message: Message):
                 f"📊 **对账结果 (RMB)**\n\n"
                 f"- Order: #{order_id}\n"
                 f"- 时间: `{current_time}`\n\n"
-                f"- Tỷ giá RMB/VND: {format_vn(rate_rmb_vnd)}\n"
-                f"- Tỷ giá VND/USDT: {format_vn(rate_vnd_usdt)}\n"
-                f"- Số tiền RMB: {format_vn(import_rmb)}\n"
-                f"- Thành tiền VND: {format_vn(total_vnd)}\n"
-                f"- Phí ({fee_percent}%): {format_vn(fee_amount)}\n"
-                f"- Còn lại (VND): {format_vn(remaining_vnd)}\n"
-                f"- Quy đổi USDT: **{usdt_amount:.2f} USDT**"
+                f"- 汇率 RMB/VND: {format_vn(rate_rmb_vnd)}\n"
+                f"- 汇率VND/USDT: {format_vn(rate_vnd_usdt)}\n"
+                f"- RMB: {format_vn(import_rmb)}\n"
+                f"- 兑换 VND: {format_vn(total_vnd)}\n"
+                f"- 手续费 ({fee_percent}%): {format_vn(fee_amount)}\n"
+                f"- 实际到账金额 (VND): {format_vn(remaining_vnd)}\n"
+                f"- 兑换成 USDT: **{usdt_amount:.2f} USDT**"
             )
             await message.answer(response, parse_mode="Markdown")
         except Exception as e:
